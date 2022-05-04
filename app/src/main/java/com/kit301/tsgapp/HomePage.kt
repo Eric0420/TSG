@@ -37,4 +37,4 @@ class HomePage : AppCompatActivity() {
     }
 }
 
-//Test upload
+//Test upload function
