@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ProjectTSG</string>
+    <string name="title_activity_home_page">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="tasmania_shopping_guide">Tasmania Shopping Guide</string>
+    <string name="please_choose_your_language_preference">Please Choose your language preference</string>
+    <string name="start">Start</string>
+    <string name="about_lcl_tech">About LCL Tech</string>
+
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Chinese Simplified</item>
+    </string-array>
+
+</resources>
