@@ -9,6 +9,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
+const val FIREBASE_TAG = "FirebaseLogging"   //Print things to the console for debugging database error
+
 
 class HomePage : AppCompatActivity() {
 
@@ -32,7 +37,8 @@ class HomePage : AppCompatActivity() {
 
         val language = intent.getStringExtra(EXTRA_MESSAGE)
 
-
+        //Get database connection and connect to database
+        val db = Firebase.firestore
 
     }
 }

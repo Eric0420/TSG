@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "995862910924",
+    "project_id": "kit301-test",
+    "storage_bucket": "kit301-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995862910924:android:0966fa0db3f0365cf5ef69",
+        "android_client_info": {
+          "package_name": "com.kit301.tsgapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995862910924-no1stdnqavg61b2ob17tbqirqfdk0174.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIO8lvb9YHh559_Co3HxsjTcxRW2b8_kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995862910924-no1stdnqavg61b2ob17tbqirqfdk0174.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
