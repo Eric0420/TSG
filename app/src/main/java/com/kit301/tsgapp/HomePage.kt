@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
@@ -116,19 +117,23 @@ class HomePage : AppCompatActivity() {
 
 
         //Retrieve Image from Database
-        val setImage : ImageView = findViewById(R.id.promotionImage)
+        val ImageButton1 : ImageButton = findViewById(R.id.promotionImage)
         val storageRef = FirebaseStorage.getInstance().reference.child("Images/006.jpg")
         val localfile = File.createTempFile("tempImage", "jpg")
         storageRef.getFile(localfile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
-            setImage.setImageBitmap(bitmap)
-
+            ImageButton1.setImageBitmap(bitmap)
 
         }.addOnFailureListener{
             Toast.makeText(this, "Failed to retrieve the image", Toast.LENGTH_SHORT).show()
+        }
 
+        //Set the action when the ImageButton is clicked
+        ImageButton1.setOnClickListener{
 
         }
+
+
 
 
 
