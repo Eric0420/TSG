@@ -114,6 +114,8 @@ class HomePage : AppCompatActivity() {
                     (myList.adapter as ProductAdapter).notifyDataSetChanged()
                 }
 
+
+        //Retrieve Image from Database
         val setImage : ImageView = findViewById(R.id.promotionImage)
         val storageRef = FirebaseStorage.getInstance().reference.child("Images/006.jpg")
         val localfile = File.createTempFile("tempImage", "jpg")
