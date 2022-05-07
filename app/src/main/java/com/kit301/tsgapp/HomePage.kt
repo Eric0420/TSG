@@ -2,6 +2,7 @@ package com.kit301.tsgapp
 
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -40,7 +41,34 @@ class HomePage : AppCompatActivity() {
         //Get database connection and connect to database
         val db = Firebase.firestore
 
+
+        //Test adding data
+        //val AddProduct = Product(
+        //        Name = "Chinotto Cask II",
+        //        SingleCaskNumber = null,
+        //        AgeStatement = null,
+        //        ABV = "49%",
+        //        YearOfRelease = 2022,
+        //        Volume = 500,
+        //        AverageSalesPrice = 299.99,
+        //        Type = "Single Malt",
+        //        TasteNose = "Orange citrus leads, while peat smoke lift the aroma and intertwine wwith hints of toasted coconut and floral lemon",
+        //        TastePalate = "Slight bitter toffee and smiked citrus arrive with vivacious ginger confectionery and milk chocolate",
+        //        TasteFinish = "A long sweet smoke, interlaced with a light oak and jaffa cake influence"
+        //)
+
+        //var ProductCollection = db.collection("Product")
+        //ProductCollection.document(AddProduct.Name)
+        //        .set(AddProduct)
+        //        .addOnSuccessListener {
+        //            Log.d(FIREBASE_TAG, "Document created with product name")
+        //        }
+        //        .addOnFailureListener {
+        //            Log.e(FIREBASE_TAG, "Error writing document")
+        //        }
+
+
+
     }
 }
 
-//Test upload function
