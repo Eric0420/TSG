@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kit301.tsgapp">
 
+    //Add Internet permission to retrieve image from Firebase
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <!-- camera permission -->
     <uses-permission android:name="android.permission.CAMERA" />
 

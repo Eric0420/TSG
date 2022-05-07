@@ -1,8 +1,13 @@
 package com.kit301.tsgapp
 
+import android.graphics.BitmapFactory
+import android.media.Image
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
+import android.widget.ImageView
+import android.widget.Spinner
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -12,11 +17,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 const val FIREBASE_TAG = "FirebaseLogging"   //Print things to the console for debugging database error
 
 
 class HomePage : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +74,9 @@ class HomePage : AppCompatActivity() {
         //        .addOnFailureListener {
         //            Log.e(FIREBASE_TAG, "Error writing document")
         //        }
+
+
+
 
 
 
