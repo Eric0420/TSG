@@ -69,7 +69,7 @@ class HomePage : AppCompatActivity() {
         //        TastePalate = "Slight bitter toffee and smiked citrus arrive with vivacious ginger confectionery and milk chocolate",
         //        TasteFinish = "A long sweet smoke, interlaced with a light oak and jaffa cake influence"
         //)
-
+        //
         //var ProductCollection = db.collection("Product")
         //ProductCollection.document(AddProduct.Name)
         //        .set(AddProduct)
