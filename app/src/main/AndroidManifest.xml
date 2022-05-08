@@ -25,9 +25,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectTSG">
         <activity
+            android:name=".ui.PromotionActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomePage"
             android:label="@string/title_activity_home_page">
-
         </activity>
 
         <activity

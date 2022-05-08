@@ -1,8 +1,7 @@
-package com.kit301.tsgapp.ui.home
+package com.kit301.tsgapp.ui.more
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +12,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.kit301.tsgapp.R
 import com.kit301.tsgapp.TakePhoto
 import com.kit301.tsgapp.databinding.FragmentHomeBinding
+import com.kit301.tsgapp.databinding.FragmentMoreBinding
+import com.kit301.tsgapp.ui.PromotionActivity
 
-class HomeFragment : Fragment() {
+class MoreFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var moreViewModel: MoreViewModel
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentMoreBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -26,19 +27,17 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        moreViewModel =
+            ViewModelProvider(this).get(MoreViewModel::class.java)
+        _binding = FragmentMoreBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = root.findViewById(R.id.text_more)
+        moreViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        }
+        })
 
-        binding.floatCamera.setOnClickListener {
-            val i = Intent(context, TakePhoto::class.java)
+        binding.textPromotion.setOnClickListener {
+            val i = Intent(context, PromotionActivity::class.java)
             startActivity(i)
         }
 
