@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
 
         //Retrieve Image from Database
         val ImageButton1 : ImageButton = binding.promotionImage
-        val storageRef = FirebaseStorage.getInstance().reference.child("Images/006.jpg")
+        val storageRef = FirebaseStorage.getInstance().reference.child("Images/013.jpg")
         val localfile = File.createTempFile("tempImage", "jpg")
         storageRef.getFile(localfile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
@@ -130,6 +130,18 @@ class HomeFragment : Fragment() {
         override fun onBindViewHolder(holder: ProductHolder, position: Int) {
             val product = tasProduct[position]   //get the data at the requested position
             holder.ui.txtName.text = product.Name //set the TextView in the row we are recycling
+
+            val storageImage = FirebaseStorage.getInstance().reference.child("Images/${product.Image}")
+            val localImage = File.createTempFile("tempImage", "jpg")
+            storageImage.getFile(localImage).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localImage.absolutePath)
+                holder.ui.productImage.setImageBitmap(bitmap)
+
+            }.addOnFailureListener{
+                //Toast.makeText(this, "Failed to retrieve the image", Toast.LENGTH_SHORT).show()
+
+            }
+
 
             holder.itemView.setOnClickListener {
                 val i = Intent(context, ProductDetails::class.java)
