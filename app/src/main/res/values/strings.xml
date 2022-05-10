@@ -9,6 +9,17 @@
     <string name="please_choose_your_language_preference">Please Choose your language preference</string>
     <string name="start">Start</string>
     <string name="about_lcl_tech">About LCL Tech</string>
+    <string name="ProductInformationPage">ProductInformationPage</string>
+    <string name="ProductDetails">Product Details</string>
+    <string name="ImageDescription">This is the product image</string>
+    <string name="ProductName">Product Name: </string>
+    <string name="productABV">productABV: </string>
+    <string name="ProductYear">ProductYear: </string>
+    <string name="productPrice">productPrice: </string>
+    <string name="productType">productType: </string>
+    <string name="TasteNose">Taste notes - Nose: </string>
+    <string name="TastePalate">Taste notes - Palate: </string>
+    <string name="TasteFinish">Taste notes - Finish: </string>
 
     <string-array name="language_array">
         <item>English</item>

@@ -1,5 +1,6 @@
 package com.kit301.tsgapp
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,6 +30,20 @@ class ProductDetails : AppCompatActivity() {
         var productsCollection = db.collection("Product")
 
         ui.productName.text =productObject.Name
+        ui.productABV.text = productObject.ABV
+        ui.productYear.text = productObject.YearOfRelease.toString()
+        ui.productPrice.text = productObject.AverageSalesPrice.toString()
+        ui.productType.text = productObject.Type
+        ui.TasteNose.text = productObject.TasteNose
+        ui.TastePalate.text = productObject.TastePalate
+        ui.TasteFinish.text = productObject.TasteFinish
+
+
+        ui.btnBack.setOnClickListener{
+            val intent = Intent(this,HomePage::class.java)
+            startActivity(intent)
+
+        }
 
 
         //Retrieve the image from DB
