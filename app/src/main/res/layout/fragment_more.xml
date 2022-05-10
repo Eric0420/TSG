@@ -19,55 +19,102 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/text_promotion"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1E4DFF00"
-            android:text=" Product promotion"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:drawableLeftCompat="@android:drawable/ic_menu_today" />
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            android:padding="4dp"
+            android:layout_margin="4dp"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/text_favorite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1EFF6600"
-            android:text=" Favorite"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:drawableLeftCompat="@android:drawable/btn_star_big_on" />
 
-        <TextView
-            android:id="@+id/text_history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1E000DFF"
-            android:text=" History"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:drawableLeftCompat="@android:drawable/ic_menu_sort_by_size" />
+            <TextView
+                android:id="@+id/text_promotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1E4DFF00"
+                android:text=" Product promotion"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@android:drawable/ic_menu_today" />
 
-        <TextView
-            android:id="@+id/text_setting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1E00FFD9"
-            android:text=" Settings"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:drawableLeftCompat="@android:drawable/ic_menu_manage" />
 
-        <TextView
-            android:id="@+id/text_help"
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1EFF0000"
-            android:text=" Help"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:drawableLeftCompat="@android:drawable/ic_menu_help" />
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            android:padding="4dp"
+            android:layout_margin="4dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_favorite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1EFF6600"
+                android:text=" Favorite"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@android:drawable/btn_star_big_on" />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            android:padding="4dp"
+            android:layout_margin="4dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1E000DFF"
+                android:text=" History"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@android:drawable/ic_menu_sort_by_size" />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            android:padding="4dp"
+            android:layout_margin="4dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1E00FFD9"
+                android:text=" Settings"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@android:drawable/ic_menu_manage" />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            android:padding="4dp"
+            android:layout_margin="4dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/text_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1EFF0000"
+                android:text=" Help"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@android:drawable/ic_menu_help" />
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
     <TextView
