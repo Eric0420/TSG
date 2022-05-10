@@ -2,10 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kit301.tsgapp">
 
-    //Add Internet permission to retrieve image from Firebase
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <!-- camera permission -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- camera permission -->
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
@@ -24,28 +21,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectTSG">
+        <activity android:name=".ProductDetails"></activity>
         <activity
             android:name=".ui.PromotionActivity"
             android:exported="false" />
         <activity
             android:name=".HomePage"
-            android:label="@string/title_activity_home_page">
-        </activity>
-
+            android:label="@string/title_activity_home_page"></activity>
         <activity
             android:name=".TakePhoto"
             android:exported="false" />
-
         <activity android:name=".StartPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <!-- 2 camera provider -->
+        </activity> <!-- 2 camera provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.kit301.tsgapp"
@@ -55,7 +47,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

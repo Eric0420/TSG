@@ -21,10 +21,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.kit301.tsgapp.*
 import com.kit301.tsgapp.FIREBASE_TAG
-import com.kit301.tsgapp.Product
-import com.kit301.tsgapp.R
-import com.kit301.tsgapp.TakePhoto
 import com.kit301.tsgapp.databinding.FragmentHomeBinding
 import com.kit301.tsgapp.databinding.ProductListItemBinding
 import java.io.File
@@ -106,6 +104,8 @@ class HomeFragment : Fragment() {
 
         //Set the action when the ImageButton is clicked
         ImageButton1.setOnClickListener{
+            val i = Intent(context, ProductDetails::class.java)
+            startActivity(i)
 
         }
 
@@ -131,7 +131,9 @@ class HomeFragment : Fragment() {
             holder.ui.txtName.text = product.Name //set the TextView in the row we are recycling
 
             holder.itemView.setOnClickListener {
-                        //your code here in next step
+                val i = Intent(context, ProductDetails::class.java)
+                startActivity(i)
+
                     }
         }
 

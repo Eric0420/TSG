@@ -56,20 +56,24 @@ class HomePage : AppCompatActivity() {
 
 
         //Test adding data
+        //val db = Firebase.firestore
+        //var productsCollection = db.collection("Product")
+        //productsCollection
+//
         //val AddProduct = Product(
-        //        Name = "Chinotto Cask II",
+        //        Name = "Symphony No.1",
         //        SingleCaskNumber = null,
         //        AgeStatement = null,
-        //        ABV = "49%",
-        //        YearOfRelease = 2022,
+        //        ABV = "40.2%",
+        //        YearOfRelease = 2020,
         //        Volume = 500,
-        //        AverageSalesPrice = 299.99,
-        //        Type = "Single Malt",
-        //        TasteNose = "Orange citrus leads, while peat smoke lift the aroma and intertwine wwith hints of toasted coconut and floral lemon",
-        //        TastePalate = "Slight bitter toffee and smiked citrus arrive with vivacious ginger confectionery and milk chocolate",
-        //        TasteFinish = "A long sweet smoke, interlaced with a light oak and jaffa cake influence"
+        //        AverageSalesPrice = 149.99,
+        //        Type = "Blended Malt",
+        //        TasteNose = "Fresh mango, toasted pineapple, orange, vanilla and tangerines. Luscious and Fruity",
+        //        TastePalate = "Peaches, apricot, even more mange and sweet Tasmanian apples dipped in toffee",
+        //        TasteFinish = "Fresh fruit and citrus. This whisky has length, poise and balance"
         //)
-        //
+//
         //var ProductCollection = db.collection("Product")
         //ProductCollection.document(AddProduct.Name)
         //        .set(AddProduct)
