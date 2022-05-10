@@ -29,6 +29,8 @@ import java.io.File
 
 const val FIREBASE_TAG = "FirebaseLogging"   //Print things to the console for debugging database error
 
+const val ProductIndex = "Product_Index"
+
 val items = mutableListOf<Product>()
 
 class HomeFragment : Fragment() {
@@ -104,8 +106,7 @@ class HomeFragment : Fragment() {
 
         //Set the action when the ImageButton is clicked
         ImageButton1.setOnClickListener{
-            val i = Intent(context, ProductDetails::class.java)
-            startActivity(i)
+
 
         }
 
@@ -132,6 +133,7 @@ class HomeFragment : Fragment() {
 
             holder.itemView.setOnClickListener {
                 val i = Intent(context, ProductDetails::class.java)
+                i.putExtra(ProductIndex, position)
                 startActivity(i)
 
                     }
