@@ -63,17 +63,18 @@ class HomePage : AppCompatActivity() {
         //productsCollection
 //
         //val AddProduct = Product(
-        //        Name = "Symphony No.1",
+        //        Name = "Classic Cask Strength (100ml)",
         //        SingleCaskNumber = null,
         //        AgeStatement = null,
-        //        ABV = "40.2%",
-        //        YearOfRelease = 2020,
-        //        Volume = 500,
-        //        AverageSalesPrice = 149.99,
-        //        Type = "Blended Malt",
-        //        TasteNose = "Fresh mango, toasted pineapple, orange, vanilla and tangerines. Luscious and Fruity",
-        //        TastePalate = "Peaches, apricot, even more mange and sweet Tasmanian apples dipped in toffee",
-        //        TasteFinish = "Fresh fruit and citrus. This whisky has length, poise and balance"
+        //        ABV = "58%",
+        //        YearOfRelease = null,
+        //        Volume = 100,
+        //        AverageSalesPrice = 69.99,
+        //        Type = "Single Malt",
+        //        Image = "019.jpg",
+        //        TasteNose = "Cinnamon, nutmeg, liquorice and orange peel with vanilla, butterscotch and oaky aromas",
+        //        TastePalate = "Intense vanilla and Christmas cake sweetness. Citrus and butterscotch flavours with stewed fruits, maple syrup and a hint of Tasmanian peat smoke. Complex citrus and spices give way to oak and stewed fruits",
+        //        TasteFinish = "Citrus, spices and toffee notes develop into a warming finish that stays long after the last sip"
         //)
 //
         //var ProductCollection = db.collection("Product")
