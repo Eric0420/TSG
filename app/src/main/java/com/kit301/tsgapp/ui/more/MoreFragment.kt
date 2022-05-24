@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.kit301.tsgapp.FavouriteProduct
 import com.kit301.tsgapp.R
 import com.kit301.tsgapp.TakePhoto
 import com.kit301.tsgapp.databinding.FragmentHomeBinding
@@ -38,6 +39,11 @@ class MoreFragment : Fragment() {
 
         binding.textPromotion.setOnClickListener {
             val i = Intent(context, PromotionActivity::class.java)
+            startActivity(i)
+        }
+
+        binding.textFavorite.setOnClickListener {
+            val i = Intent(context, FavouriteProduct::class.java)
             startActivity(i)
         }
 

@@ -21,13 +21,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectTSG">
-        <activity android:name=".ProductDetails"></activity>
+        <activity android:name=".FavouriteProduct"></activity>
+        <activity android:name=".ProductDetails" />
         <activity
             android:name=".ui.PromotionActivity"
             android:exported="false" />
         <activity
             android:name=".HomePage"
-            android:label="@string/title_activity_home_page"></activity>
+            android:label="@string/title_activity_home_page" />
         <activity
             android:name=".TakePhoto"
             android:exported="false" />

@@ -20,6 +20,8 @@
     <string name="TasteNose">Taste notes - Nose: </string>
     <string name="TastePalate">Taste notes - Palate: </string>
     <string name="TasteFinish">Taste notes - Finish: </string>
+    <string name="Back">Back to previous page</string>
+    <string name="Backtohome">Back To Homepage</string>
 
     <string-array name="language_array">
         <item>English</item>
