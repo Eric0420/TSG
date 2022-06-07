@@ -86,7 +86,7 @@ class HomePage : AppCompatActivity() {
         //        .addOnFailureListener {
         //            Log.e(FIREBASE_TAG, "Error writing document")
         //        }
-
+        //
 
     }
 
