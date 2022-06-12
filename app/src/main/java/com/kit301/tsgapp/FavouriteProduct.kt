@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
@@ -47,9 +48,13 @@ class FavouriteProduct : AppCompatActivity() {
         //Get database connection and connect to database
         val db = Firebase.firestore
 
+        //Get the Android Device ID for identifying different devices
+        var deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+
         //Retrieve data from database
-        var favouriteCollection = db.collection("Favourite")
-        favouriteCollection
+        var favouriteCollection = db.collection("UserFavouriteProduct")
+        favouriteCollection.document(deviceID)
+                .collection("UserFavourite")
                 .get()
                 .addOnSuccessListener { result ->
                     FavouriteItems.clear() //this line clears the list, and prevents a bug where items would be duplicated upon rotation of screen
