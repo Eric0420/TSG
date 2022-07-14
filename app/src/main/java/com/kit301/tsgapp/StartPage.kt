@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import com.kit301.tsgapp.ui.homepage.Homepage
 
 
 class StartPage : AppCompatActivity() {
@@ -33,7 +34,7 @@ class StartPage : AppCompatActivity() {
         val button: Button = findViewById(R.id.toHome_btn)
         button.setOnClickListener {
             val language: String = spinner.selectedItem.toString()
-            val myIntent = Intent(this, HomePage::class.java)
+            val myIntent = Intent(this, Homepage::class.java)
             myIntent.putExtra(EXTRA_MESSAGE, language) //Optional parameters
             startActivity(myIntent)
         }

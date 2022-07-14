@@ -13,5 +13,6 @@ class Product (
     var TasteNose: String? = null,
     var TastePalate : String? = null,
     var TasteFinish: String? = null,
-    var Image: String? = null
+    var Image: String? = null,
+    var BarcodeNumber: String? = null
 )

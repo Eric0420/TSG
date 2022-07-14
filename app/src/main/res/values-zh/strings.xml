@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Tasmania Shopping Guide</string>
+    <string name="title_activity_home_page">主页</string>
+    <string name="title_home">主页</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_notifications">通知</string>
+    <string name="title_more">更多选项</string>
+    <string name="tasmania_shopping_guide">Tasmania Shopping Guide</string>
+    <string name="please_choose_your_language_preference">请选择应用程序语言</string>
+    <string name="start">开始</string>
+    <string name="about_lcl_tech">关于LCL公司</string>
+    <string name="ProductInformationPage">商品信息页面</string>
+    <string name="ProductDetails">商品详细信息</string>
+    <string name="ImageDescription">这是商品照片</string>
+    <string name="ProductName">商品名称: </string>
+    <string name="productABV">酒精度数: </string>
+    <string name="ProductYear">年份: </string>
+    <string name="productPrice">商品价格: </string>
+    <string name="productType">商品种类: </string>
+    <string name="TasteNose">香味特征: </string>
+    <string name="TastePalate">味道特征: </string>
+    <string name="TasteFinish">总体特征: </string>
+    <string name="Back">返回上一页面</string>
+    <string name="Backtohome">返回主页</string>
+    <string name="Search">搜索商品</string>
+    <string name="Favourite">收藏商品</string>
+    <string name="History">历史记录</string>
+    <string name="Notification">通知</string>
+    <string name="Admin">管理员登录</string>
+    <string name="About">关于</string>
+    <string name="Test">测试</string>
+    <string name="menu_drawer_open">Drawer Open</string>
+    <string name="menu_drawer_close">Drawer Close</string>
+
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Chinese Simplified</item>
+    </string-array>
+
+    <string name="title_activity_tsg_home_page">tsgHomePage</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">设置</string>
+
+    <string name="menu_home">主页</string>
+    <string name="DataNotFound">没有找到相关商品</string>
+    <string name="ScanOtherProduct">扫描其他商品</string>
+    <string name="ScanSomething">请扫描商品信息...</string>
+    <string name="ChangeLanguage">更改语言</string>
+
+</resources>

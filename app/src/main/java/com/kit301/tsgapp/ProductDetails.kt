@@ -1,68 +1,286 @@
 package com.kit301.tsgapp
 
+import android.app.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.documentfile.provider.DocumentFile
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.kit301.tsgapp.databinding.ActivityProductDetailsBinding
-import com.kit301.tsgapp.ui.home.ProductIndex
-import com.kit301.tsgapp.ui.home.items
-
+import com.kit301.tsgapp.ui.admin.AdminActivity
+import com.kit301.tsgapp.ui.homepage.Homepage
+import com.kit301.tsgapp.ui.homepage.Scan_Text
+import com.kit301.tsgapp.ui.test.FIREBASE_TAG
 import java.io.File
 
-class ProductDetails : AppCompatActivity() {
 
-    //This variable use to control the action of the Favourite button
-    var isMyFavourite : Boolean = false
+const val FIREBASE_TAG = "FirebaseLogging"   //Print things to the console for debugging database error
 
+val db = Firebase.firestore
+
+var isMyFavourite : Boolean = false  //This variable use to control the action of the Favourite button
+
+class ProductDetails : DrawerBaseActivity() {
 
     private lateinit var ui : ActivityProductDetailsBinding
+
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ui = ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(ui.root)
+        setActionbarTitle()
 
-        //Retrieve the product extra information from previous page
-        val productID =intent.getIntExtra(ProductIndex, -1)
-        var productObject = items[productID]
+        val barcodeNumber = intent.getStringExtra(Scan_Text)
+        readData(barcodeNumber)
+
+    }
+
+    private fun setActionbarTitle() {
+        val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
+        val currentLanguageSetting = sharedPreferences.getString("My_Lang", "")
+        if (currentLanguageSetting == "en" || currentLanguageSetting == ""){
+            allocateActivityTitle("Product Details")
+        }
+        else if (currentLanguageSetting == "zh"){
+            allocateActivityTitle("商品详细信息")
+        }
+    }
+
+
+    private fun readData(barcodeNumber: String?) {
+
+
+        var currentLanguage = getSharedPreferences("Settings", Activity.MODE_PRIVATE).getString("My_Lang", "")
+
+        //This if statement is used to prevent error (If do not add this statement, when user do not change the language setting, the currentLanguage value will be null)
+        if (currentLanguage == "en" || currentLanguage == ""){
+            currentLanguage = "en"
+        }
+
+
+
+        var productsCollection = db.collection("$currentLanguage" + "Product")
+
+        productsCollection
+                .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+                .get()
+                .addOnSuccessListener { result->
+                    //If the searching result is empty (Do not have the product with the scanned barcode number)
+                    if (result.isEmpty){
+                        val intent = Intent(this, DataNotFound::class.java)
+                        startActivity(intent)
+                        Log.e(FIREBASE_TAG, "No product record in database")
+                        finish()
+                    }
+
+                    //If the searching result is not empty (Have the product with the scanned barcode number)
+                    else {
+                        for (document in result) {
+                            //Setup the User Interface
+                            val product = document.toObject<Product>()
+                            setupUI(product)
+
+                            //Check whether or not the current product is in favourite list
+                            checkFavouriteStatus(product)
+
+                            //Set the action of the Back button
+                            ui.btnBack.setOnClickListener {
+                                val intent = Intent(this, Homepage::class.java)
+                                startActivity(intent)
+
+                            }
+
+                            //Set the action of the Favourite button
+                            ui.btnFavourite.setOnClickListener {
+
+
+                                //If the current product exist in favourite list
+                                if (isMyFavourite) {
+                                    ui.btnFavourite.backgroundTintList = ColorStateList.valueOf(Color.BLACK)
+                                    isMyFavourite = false
+
+                                    //Delete the favourite product when the button click
+                                    deleteFavouriteProduct(barcodeNumber)
+                                }
+
+                                //If the current product not exist in favourite list
+                                else {
+                                    ui.btnFavourite.backgroundTintList = ColorStateList.valueOf(Color.RED)
+                                    isMyFavourite = true
+
+                                    //Add the favourite product when the button click
+                                    addFavouriteProduct(barcodeNumber)
+                                }
+                            }  //This is the end of the favourite button action
+
+                        }
+                    }
+
+                }
+
+                .addOnFailureListener{
+                    Log.d(FIREBASE_TAG, "Error getting documents")
+                    Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
+                }
+
+
+    }
+
+    private fun addFavouriteProduct(barcodeNumber: String?) {
+
+        val enProductsCollection = db.collection("enProduct")  //The English Language product database
+        val zhProductsCollection = db.collection("zhProduct")  ////The Chinese Language product database
+        val deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+
+        //Add the English Version Data to the UserFavouriteProduct Database
+        enProductsCollection
+                .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+                .get()
+                .addOnSuccessListener { result->
+                    for (document in result) {
+                        val product = document.toObject<Product>()
+
+                        val productCollection = db.collection("UserFavouriteProduct")
+                        productCollection.document(deviceID)
+                                .collection("en")
+                                .document("${product.Name}")
+                                .set(product)
+                                .addOnSuccessListener {
+                                    //Display the text to tell the user that the action is success
+                                    Toast.makeText(this, "Successfully added to you favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.d(FIREBASE_TAG, "Document created with product name: ${product.Name}")
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(this, "Failed to add to favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.e(FIREBASE_TAG, "Error writing document")
+                                }
+
+                    }
+                }
+
+        //Add the Chinese Version Data to the UserFavouriteProduct Database
+        zhProductsCollection
+                .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+                .get()
+                .addOnSuccessListener { result->
+                    for (document in result) {
+                        val product = document.toObject<Product>()
+
+                        val productCollection = db.collection("UserFavouriteProduct")
+                        productCollection.document(deviceID)
+                                .collection("zh")
+                                .document("${product.Name}")
+                                .set(product)
+                                .addOnSuccessListener {
+                                    //Display the text to tell the user that the action is success
+                                    Toast.makeText(this, "Successfully added to you favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.d(FIREBASE_TAG, "Document created with product name: ${product.Name}")
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(this, "Failed to add to favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.e(FIREBASE_TAG, "Error writing document")
+                                }
+
+                    }
+                }
+
+    }
+
+    private fun deleteFavouriteProduct(barcodeNumber: String?) {
+
+        val enProductsCollection = db.collection("enProduct")  //The English Language product database
+        val zhProductsCollection = db.collection("zhProduct")  //The Chinese Language product database
+        val deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+
+        //Delete the English Version Data from the UserFavouriteProduct Database
+        enProductsCollection
+                .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+                .get()
+                .addOnSuccessListener { result->
+                    for (document in result) {
+                        val product = document.toObject<Product>()
+
+                        val productCollection = db.collection("UserFavouriteProduct")
+                        productCollection.document(deviceID)
+                                .collection("en")
+                                .document("${product.Name}")
+                                .delete()
+                                .addOnSuccessListener {
+                                    Toast.makeText(this, "Successfully remove the product from your favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${product.Name}")
+                                }
+                                .addOnFailureListener {
+                                    Log.e(FIREBASE_TAG, "Error in deleting document")
+                                }
+
+
+                    }
+                }
+
+        //Delete the Chinese Version Data from the UserFavouriteProduct Database
+        zhProductsCollection
+                .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+                .get()
+                .addOnSuccessListener { result->
+                    for (document in result) {
+                        val product = document.toObject<Product>()
+
+                        val productCollection = db.collection("UserFavouriteProduct")
+                        productCollection.document(deviceID)
+                                .collection("zh")
+                                .document("${product.Name}")
+                                .delete()
+                                .addOnSuccessListener {
+                                    Toast.makeText(this, "Successfully remove the product from your favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${product.Name}")
+                                }
+                                .addOnFailureListener {
+                                    Log.e(FIREBASE_TAG, "Error in deleting document")
+                                }
+
+
+                    }
+                }
+
+    }
+
+
+
+
+    private fun checkFavouriteStatus(product: Product) {
 
         //Get the Android Device ID for identifying different devices
-        var deviceID = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID)
+        val deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
 
+        //Get the current language setting (Check which language is using)
+        var currentLanguage = getSharedPreferences("Settings", Activity.MODE_PRIVATE).getString("My_Lang", "")
 
-        //Connect to DB and retrieve the product details
-        val db = Firebase.firestore
-        var productsCollection = db.collection("Product")
+        //This if statement is used to prevent error (If do not add this statement, when user do not change the language setting, the currentLanguage value will be null)
+        if (currentLanguage == "en" || currentLanguage == ""){
+            currentLanguage = "en"
+        }
 
-        ui.productName.text =productObject.Name
-        ui.productABV.text = productObject.ABV
-        ui.productYear.text = productObject.YearOfRelease.toString()
-        ui.productPrice.text = productObject.AverageSalesPrice.toString()
-        ui.productType.text = productObject.Type
-        ui.TasteNose.text = productObject.TasteNose
-        ui.TastePalate.text = productObject.TastePalate
-        ui.TasteFinish.text = productObject.TasteFinish
 
         //Check whether or not the current product is in favourite list
-        val checkFavouriteStatus = FirebaseFirestore.getInstance().collection("UserFavouriteProduct").document(deviceID).collection("UserFavourite").document("${productObject.Name}")
+        val checkFavouriteStatus = FirebaseFirestore.getInstance().collection("UserFavouriteProduct")
+                .document(deviceID).collection("$currentLanguage")
+                .document("${product.Name.toString()}")
         checkFavouriteStatus.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val document = task.result
-                if(document != null) {
+                if (document != null) {
                     if (document.exists()) {
                         ui.btnFavourite.backgroundTintList = ColorStateList.valueOf(Color.RED)
                         isMyFavourite = true
@@ -74,90 +292,28 @@ class ProductDetails : AppCompatActivity() {
                 Log.d("TAG", "Error: ", task.exception)
             }
         }
+    }
 
-
-
-        ui.btnBack.setOnClickListener{
-            val intent = Intent(this,HomePage::class.java)
-            startActivity(intent)
-
-        }
-
-
-        ui.btnFavourite.setOnClickListener{
-
-            //Retrieve the product information, ready for next action
-                val AddFavouriteProduct = Product(
-                        Name = productObject.Name,
-                        SingleCaskNumber = productObject.SingleCaskNumber,
-                        AgeStatement = productObject.AgeStatement,
-                        ABV = productObject.ABV,
-                        YearOfRelease = productObject.YearOfRelease,
-                        Volume = productObject.Volume,
-                        AverageSalesPrice = productObject.AverageSalesPrice,
-                        Type = productObject.Type,
-                        Image = productObject.Image,
-                        TasteNose = productObject.TasteNose,
-                        TastePalate = productObject.TastePalate,
-                        TasteFinish = productObject.TasteFinish
-                )
-
-            //If the current product exist in favourite list
-            if(isMyFavourite){
-                ui.btnFavourite.backgroundTintList = ColorStateList.valueOf(Color.BLACK)
-
-                var ProductCollection = db.collection("UserFavouriteProduct")
-                        ProductCollection.document(deviceID)
-                                .collection("UserFavourite")
-                                .document("${AddFavouriteProduct.Name}")
-                                .delete()
-                                .addOnSuccessListener {
-                                    Toast.makeText(this,"Successfully remove the product from your favourite list",Toast.LENGTH_SHORT).show()
-                                    Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${AddFavouriteProduct.Name}")
-                                }
-                                .addOnFailureListener {
-                                    Log.e(FIREBASE_TAG, "Error in deleting document")
-                                }
-
-            }
-
-            //If the current product not exist in favourite list
-            else{
-                ui.btnFavourite.backgroundTintList = ColorStateList.valueOf(Color.RED)
-
-                var ProductCollection = db.collection("UserFavouriteProduct")
-                        ProductCollection.document(deviceID)
-                                .collection("UserFavourite")
-                                .document("${AddFavouriteProduct.Name}")
-                                .set(AddFavouriteProduct)
-
-                                .addOnSuccessListener {
-                                    //Display the text to tell the user that the action is success
-                                    Toast.makeText(this,"Successfully added to you favourite list",Toast.LENGTH_SHORT).show()
-                                    Log.d(FIREBASE_TAG, "Document created with product name: ${AddFavouriteProduct.Name}")
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(this,"Failed to add to favourite list",Toast.LENGTH_SHORT).show()
-                                    Log.e(FIREBASE_TAG, "Error writing document")
-                                }
-            }
-
-
-        }
-
+    private fun setupUI(product: Product) {
+        //Setup the User Interface
+        ui.productName.text = product.Name
+        ui.productABV.text = product.ABV
+        ui.productYear.text = product.YearOfRelease.toString()
+        ui.productPrice.text = product.AverageSalesPrice.toString()
+        ui.productType.text = product.Type
+        ui.TasteNose.text = product.TasteNose
+        ui.TastePalate.text = product.TastePalate
+        ui.TasteFinish.text = product.TasteFinish
 
         //Retrieve the image from DB
-        val storageRef = FirebaseStorage.getInstance().reference.child("Images/${productObject.Image}")
+        val storageRef = FirebaseStorage.getInstance().reference.child("Images/${product.Image}")
         val localfile = File.createTempFile("tempImage", "jpg")
         storageRef.getFile(localfile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             ui.targetImage.setImageBitmap(bitmap)
-
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             //Toast.makeText(this, "Failed to retrieve the image", Toast.LENGTH_SHORT).show()
-
         }
-
 
     }
 

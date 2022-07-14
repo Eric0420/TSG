@@ -21,24 +21,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectTSG">
-        <activity android:name=".FavouriteProduct"></activity>
-        <activity android:name=".ProductDetails" />
         <activity
-            android:name=".ui.PromotionActivity"
-            android:exported="false" />
+            android:name=".ui.favourite.FavouriteProductDetails"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
         <activity
-            android:name=".HomePage"
-            android:label="@string/title_activity_home_page" />
+            android:name=".DataNotFound"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
         <activity
-            android:name=".TakePhoto"
-            android:exported="false" />
-        <activity android:name=".StartPage">
+            android:name=".ProductDetails"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+
+
+        <activity android:name=".StartAnimation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 2 camera provider -->
+        </activity>
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
+            android:name=".ui.notification.NotificationActivity"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
+            android:name=".ui.history.HistoryActivity"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
+            android:name=".ui.admin.AdminActivity"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
+            android:name=".ui.test.Test"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
+            android:name=".ui.homepage.Homepage"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
+            android:name=".ui.search.SearchProduct"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity android:name=".DrawerBaseActivity" />
+        <activity
+            android:name=".ui.favourite.FavouriteProduct"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
+            android:name=".ui.about.AboutActivity"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
+            android:name=".TakePhoto"
+            android:exported="false" />
+        <activity android:name=".StartPage" /> <!-- 2 camera provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.kit301.tsgapp"
