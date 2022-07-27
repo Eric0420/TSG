@@ -1,26 +1,41 @@
 package com.kit301.tsgapp.ui.test
 
 import android.app.Activity
+import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.google.firebase.auth.FirebaseAuth
 import com.kit301.tsgapp.*
 import com.kit301.tsgapp.databinding.ActivityProductDetailsBinding
+import com.kit301.tsgapp.databinding.ActivityTestBinding
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.regex.Pattern
+
 
 const val FIREBASE_TAG = "FirebaseLogging"   //Print things to the console for debugging database error
 
 
+
 class Test : DrawerBaseActivity() {
-    private lateinit var ui : ActivityProductDetailsBinding
+    private lateinit var ui : ActivityTestBinding
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = ActivityProductDetailsBinding.inflate(layoutInflater)
+        ui = ActivityTestBinding.inflate(layoutInflater)
         setContentView(ui.root)
         setActionbarTitle()
 
+
+
+        //getTime()
         //Test adding data
         //val db = Firebase.firestore
 //
@@ -50,7 +65,18 @@ class Test : DrawerBaseActivity() {
         //            Log.e(FIREBASE_TAG, "Error writing document")
         //        }
 
+
+
+
     }
+
+
+
+    //private fun getTime(){
+    //    val datetimeFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+    //    val date = Date()
+    //    ui.textTime.text = datetimeFormat.format(date)
+    //}
 
 
     private fun setActionbarTitle() {
@@ -63,6 +89,7 @@ class Test : DrawerBaseActivity() {
             allocateActivityTitle("测试页面")
         }
     }
+
 
 
 }
