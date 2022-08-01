@@ -95,13 +95,6 @@ class ProductDetails : DrawerBaseActivity() {
                             //Check whether or not the current product is in favourite list
                             checkFavouriteStatus(product)
 
-                            //Set the action of the Back button
-                            ui.btnBack.setOnClickListener {
-                                val intent = Intent(this, Homepage::class.java)
-                                startActivity(intent)
-
-                            }
-
                             //Set the action of the Favourite button
                             ui.btnFavourite.setOnClickListener {
 
@@ -304,6 +297,7 @@ class ProductDetails : DrawerBaseActivity() {
         ui.TasteNose.text = product.TasteNose
         ui.TastePalate.text = product.TastePalate
         ui.TasteFinish.text = product.TasteFinish
+        ui.productVolume.text = product.Volume.toString()
 
         //Retrieve the image from DB
         val storageRef = FirebaseStorage.getInstance().reference.child("Images/${product.Image}")

@@ -51,4 +51,13 @@
     <string name="ScanSomething">请扫描商品信息...</string>
     <string name="ChangeLanguage">更改语言</string>
 
+    <string name="Volume">容量 (毫升): </string>
+    <string name="Login">登录</string>
+    <string name="LoginToYourAccount">登录到你的账户</string>
+    <string name="Password">密码</string>
+    <string name="Email">邮件地址</string>
+    <string name="Logout">登出账户</string>
+    <string name="OtherDetails">其他商品细节</string>
+    <string name="Flavour">风味和味道</string>
+
 </resources>

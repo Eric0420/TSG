@@ -12,4 +12,16 @@
     <color name="skyblue">#009FFF</color>
     <color name="red">#FF0000</color>
     <color name="animation_background">#05AF9F</color>
+
+    <color name="primary_orange">#eea84e</color>
+    <color name="light_brown">#E7DED7</color>
+
+    <color name="sec_orange">#cc663e</color>
+    <color name="navy_blue">#3f5965</color>
+    <color name="grey">#c1c1c1</color>
+
+
+
+
+
 </resources>

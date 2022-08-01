@@ -13,10 +13,10 @@
     <string name="ProductDetails">Product Details</string>
     <string name="ImageDescription">This is the product image</string>
     <string name="ProductName">Product Name: </string>
-    <string name="productABV">ProductABV: </string>
-    <string name="ProductYear">ProductYear: </string>
+    <string name="productABV">Alcohol by volume: </string>
+    <string name="ProductYear">Year of release: </string>
     <string name="productPrice">ProductPrice: </string>
-    <string name="productType">ProductType: </string>
+    <string name="productType">Product Type: </string>
     <string name="TasteNose">Taste notes - Nose: </string>
     <string name="TastePalate">Taste notes - Palate: </string>
     <string name="TasteFinish">Taste notes - Finish: </string>
@@ -50,11 +50,29 @@
     <string name="ScanOtherProduct">Scan Other Product</string>
     <string name="ScanSomething">Scan something...</string>
     <string name="ChangeLanguage">Change Language</string>
+
+    <string name="Volume">Volume (ml): </string>
     <string name="Login">Login</string>
     <string name="LoginToYourAccount">Login To Your Account</string>
     <string name="Password">Password</string>
     <string name="Email">Email</string>
     <string name="Logout">Logout</string>
+    <string name="OtherDetails">Other Details</string>
+    <string name="Flavour">Flavour</string>
+
+
+    <string name="SamplePrice">$299.99 AUD</string>
+    <string name="SampleProductName">Chinotto Cask II Cask Strength</string>
+    <string name="SampleTasteNose">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
+    <string name="SampleTastePalate">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
+    <string name="SampleTasteFinish">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
+    <string name="SampleProductType">Single Malt</string>
+    <string name="SampleProductVolume">500ml</string>
+    <string name="SampleABV">65.80%</string>
+    <string name="SampleProductYear">2022</string>
+
+
+
 
 
 </resources>
