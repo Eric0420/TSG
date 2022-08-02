@@ -61,7 +61,7 @@
     <string name="Flavour">Flavour</string>
 
 
-    <string name="SamplePrice">$299.99 AUD</string>
+    <string name="SamplePrice">299.99</string>
     <string name="SampleProductName">Chinotto Cask II Cask Strength</string>
     <string name="SampleTasteNose">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
     <string name="SampleTastePalate">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
@@ -70,6 +70,7 @@
     <string name="SampleProductVolume">500ml</string>
     <string name="SampleABV">65.80%</string>
     <string name="SampleProductYear">2022</string>
+    <string name="dollarIcon">$</string>
 
 
 

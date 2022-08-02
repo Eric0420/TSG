@@ -82,10 +82,26 @@
 
 
             <TextView
+                android:id="@+id/dollarIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/amiko_bold"
+                android:gravity="start"
+                android:text="@string/dollarIcon"
+                android:textColor="@color/navy_blue"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toStartOf="@id/productPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/targetImage" />
+
+
+            <TextView
                 android:id="@+id/productPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/amiko_bold"
                 android:gravity="start"
@@ -93,7 +109,7 @@
                 android:textColor="@color/navy_blue"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/dollarIcon"
                 app:layout_constraintTop_toBottomOf="@+id/targetImage" />
 
             <TextView
