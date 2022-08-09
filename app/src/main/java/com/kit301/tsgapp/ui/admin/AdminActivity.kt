@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.kit301.tsgapp.ui.admin
 
 import android.app.Activity
@@ -10,6 +12,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.kit301.tsgapp.DrawerBaseActivity
 import com.kit301.tsgapp.databinding.ActivityAdminBinding
+
 
 class AdminActivity : DrawerBaseActivity() {
 

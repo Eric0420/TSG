@@ -15,12 +15,10 @@ import com.kit301.tsgapp.ui.homepage.Homepage;
 
 import static android.content.ContentValues.TAG;
 
+@SuppressWarnings("ALL")
 public class StartAnimation extends AppCompatActivity {
 
     @Override
-    @SuppressWarnings("DEPRECATION")
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_animation);

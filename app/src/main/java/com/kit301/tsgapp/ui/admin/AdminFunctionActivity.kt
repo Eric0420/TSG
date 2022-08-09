@@ -7,7 +7,8 @@ import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.kit301.tsgapp.DrawerBaseActivity
 import com.kit301.tsgapp.databinding.ActivityAdminFunctionBinding
-import com.kit301.tsgapp.ui.test.Test
+
+
 
 class AdminFunctionActivity : DrawerBaseActivity() {
 

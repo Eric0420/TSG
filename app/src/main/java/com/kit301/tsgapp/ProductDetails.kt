@@ -3,10 +3,13 @@ package com.kit301.tsgapp
 import android.app.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
@@ -22,6 +25,7 @@ import com.kit301.tsgapp.ui.homepage.Homepage
 import com.kit301.tsgapp.ui.homepage.Scan_Text
 import com.kit301.tsgapp.ui.test.FIREBASE_TAG
 import java.io.File
+import java.util.*
 
 
 const val FIREBASE_TAG = "FirebaseLogging"   //Print things to the console for debugging database error
@@ -30,6 +34,7 @@ val db = Firebase.firestore
 
 var isMyFavourite : Boolean = false  //This variable use to control the action of the Favourite button
 
+@Suppress("DEPRECATION")
 class ProductDetails : DrawerBaseActivity() {
 
     private lateinit var ui : ActivityProductDetailsBinding
@@ -117,6 +122,17 @@ class ProductDetails : DrawerBaseActivity() {
                                     addFavouriteProduct(barcodeNumber)
                                 }
                             }  //This is the end of the favourite button action
+
+                            //Share product image
+                            ui.btnShare.setOnClickListener {
+                                this.window.decorView.isDrawingCacheEnabled = true
+                                val bmp: Bitmap = this.window.decorView.drawingCache
+                                val uri= Uri.parse(MediaStore.Images.Media.insertImage(contentResolver, bmp, "IMG"+ Calendar.getInstance().time, null))
+                                val intent=Intent(Intent.ACTION_SEND)
+                                intent.type = "image/jpeg"
+                                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                                startActivity(Intent.createChooser(intent, product.Name))
+                            }
 
                         }
                     }
