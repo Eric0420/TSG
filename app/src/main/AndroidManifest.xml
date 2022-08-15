@@ -33,6 +33,9 @@
             android:name=".ui.favourite.FavouriteProductDetails"
             android:theme="@style/Theme.ProjectTSG.NoActionBar" />
         <activity
+            android:name=".ui.search.ListProductDetails"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
+        <activity
             android:name=".DataNotFound"
             android:theme="@style/Theme.ProjectTSG.NoActionBar" />
         <activity
