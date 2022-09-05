@@ -72,8 +72,10 @@
     <string name="SampleProductYear">2022</string>
     <string name="dollarIcon">$</string>
 
-
-
+    <string name="send">send</string>
+    <string name="EnterTitle">Enter Title</string>
+    <string name="EnterMessage">Enter Message</string>
+    <string name="NotificationSystem">Notification System</string>
 
 
 </resources>

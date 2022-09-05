@@ -29,6 +29,7 @@ import com.kit301.tsgapp.*
 import com.kit301.tsgapp.databinding.ActivityProductDetailsBinding
 import com.kit301.tsgapp.databinding.ActivityTestBinding
 import com.kit301.tsgapp.ui.homepage.Scan_Text
+import com.kit301.tsgapp.ui.notification.SendNotification
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,7 +43,6 @@ var isMyFavourite : Boolean = false  //This variable use to control the action o
 
 class Test : DrawerBaseActivity() {
     private lateinit var ui : ActivityProductDetailsBinding
-
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,13 +142,8 @@ class Test : DrawerBaseActivity() {
 
                             //Share product image
                             ui.btnShare.setOnClickListener {
-                                this.window.decorView.isDrawingCacheEnabled = true
-                                val bmp: Bitmap = this.window.decorView.drawingCache
-                                val uri= Uri.parse(MediaStore.Images.Media.insertImage(contentResolver, bmp, "IMG"+ Calendar.getInstance().time, null))
-                                val intent=Intent(Intent.ACTION_SEND)
-                                intent.type = "image/jpeg"
-                                intent.putExtra(Intent.EXTRA_STREAM, uri)
-                                startActivity(Intent.createChooser(intent, product.Name))
+                                val intent = Intent(this, SendNotification::class.java)
+                                startActivity(intent)
                             }
 
                         }
