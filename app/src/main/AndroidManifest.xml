@@ -5,9 +5,7 @@
     <!-- Internet permission -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- camera permission -->
     <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>  <!-- FCM Receive permission, test -->
-
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> <!-- FCM Receive permission, test -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -24,19 +22,17 @@
         android:roundIcon="@mipmap/ic_shopping_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectTSG">
+        <activity android:name=".ui.notification.NotificationContent"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar"/>
 
-
-        <service android:name=".ui.notification.FirebaseService"
+        <service
+            android:name=".ui.notification.FirebaseService"
             android:permission="com.google.android.c2dm.permission.SEND">
-
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
-        </service>
-
-
-        <!-- Firebase Cloud Messaging -->
+        </service> <!-- Firebase Cloud Messaging -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_shopping" />
@@ -50,8 +46,7 @@
 
         <activity
             android:name=".ui.notification.SendNotification"
-            android:theme="@style/Theme.ProjectTSG.NoActionBar"/>
-
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
         <activity
             android:name=".ui.admin.AdminFunctionActivity"
             android:theme="@style/Theme.ProjectTSG.NoActionBar" />
@@ -118,10 +113,7 @@
 
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" /> <!-- Firebase Cloud Messaging -->
-
-
-
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

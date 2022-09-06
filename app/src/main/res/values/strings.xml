@@ -76,6 +76,8 @@
     <string name="EnterTitle">Enter Title</string>
     <string name="EnterMessage">Enter Message</string>
     <string name="NotificationSystem">Notification System</string>
+    <string name="Title">Title</string>
+    <string name="notificationTime">This is notification Time</string>
 
 
 </resources>
