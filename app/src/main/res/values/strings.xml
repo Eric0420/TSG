@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tasmania Shopping Guide</string>
+    <string name="app_name">TSG</string>
     <string name="title_activity_home_page">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
@@ -78,6 +78,7 @@
     <string name="NotificationSystem">Notification System</string>
     <string name="Title">Title</string>
     <string name="notificationTime">This is notification Time</string>
+    <string name="PushNotification">Push Notification</string>
 
 
 </resources>

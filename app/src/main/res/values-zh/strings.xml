@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tasmania Shopping Guide</string>
+    <string name="app_name">TSG</string>
     <string name="title_activity_home_page">主页</string>
     <string name="title_home">主页</string>
     <string name="title_profile">Profile</string>

@@ -142,8 +142,7 @@ class Test : DrawerBaseActivity() {
 
                             //Share product image
                             ui.btnShare.setOnClickListener {
-                                val intent = Intent(this, SendNotification::class.java)
-                                startActivity(intent)
+
                             }
 
                         }
