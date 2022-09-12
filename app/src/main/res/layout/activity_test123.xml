@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.admin.AdminFunctionActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground">
 
 
@@ -20,9 +19,9 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/adminFunctionHeader"
+                android:id="@+id/imageHeader"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="260dp"
                 android:contentDescription="@string/ImageDescription"
                 app:layout_constraintTop_toTopOf="parent"
                 android:scaleType="centerCrop"
@@ -30,53 +29,76 @@
 
 
             <TextView
-                android:id="@+id/txtHello"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="@string/Hello"
-                android:textAlignment="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <TextView
-                android:id="@+id/emailTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="100dp"
                 android:text="@string/action_settings"
-                android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="23sp"
                 android:textStyle="bold"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/adminFunctionHeader"
-                app:layout_constraintTop_toBottomOf="@+id/txtHello" />
+                app:layout_constraintStart_toEndOf="@+id/imageHeader"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                android:id="@+id/adminFunctionViewSupporter"
+                android:id="@+id/viewSupporter"
                 android:layout_width="1dp"
                 android:layout_height="1dp"
                 android:layout_marginBottom="50dp"
-                app:layout_constraintBottom_toBottomOf="@id/adminFunctionHeader"
+                app:layout_constraintBottom_toBottomOf="@id/imageHeader"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardAddProduct"
+                android:id="@+id/cardSetting"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 app:cardBackgroundColor="@color/colorWhite"
                 app:cardCornerRadius="8dp"
-                app:layout_constraintEnd_toStartOf="@id/cardDeleteProduct"
+                app:layout_constraintEnd_toStartOf="@id/cardSetting2"
                 android:layout_marginEnd="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/adminFunctionViewSupporter">
+                app:layout_constraintTop_toBottomOf="@id/viewSupporter">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:contentDescription="@string/ImageDescription"
+                            android:src="@drawable/ic_setting"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/action_settings"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSetting2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="10dp"
+                app:cardBackgroundColor="@color/colorWhite"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintStart_toEndOf="@id/cardSetting"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewSupporter">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,13 +112,13 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:contentDescription="@string/ImageDescription"
-                        android:src="@drawable/ic_upload"/>
+                        android:src="@drawable/ic_setting"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/AddProduct"
+                        android:text="@string/action_settings"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="16sp"
                         android:textStyle="bold"/>
@@ -105,37 +127,41 @@
 
             </androidx.cardview.widget.CardView>
 
+
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardDeleteProduct"
+                android:id="@+id/cardSetting3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="25dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
                 app:cardBackgroundColor="@color/colorWhite"
                 app:cardCornerRadius="8dp"
-                app:layout_constraintStart_toEndOf="@id/cardAddProduct"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/adminFunctionViewSupporter">
+                app:layout_constraintEnd_toStartOf="@id/cardSetting4"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardSetting">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="vertical"
                     android:padding="15dp"
+                    android:orientation="vertical"
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:contentDescription="@string/ImageDescription"
-                        android:src="@drawable/ic_delete_product"/>
+                        android:src="@drawable/ic_setting"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/DeleteProduct"
+                        android:text="@string/action_settings"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="16sp"
                         android:textStyle="bold"/>
@@ -146,102 +172,55 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardUpdateProduct"
+                android:id="@+id/cardSetting4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="10dp"
-                app:cardBackgroundColor="@color/colorWhite"
-                app:cardCornerRadius="8dp"
-                app:layout_constraintEnd_toStartOf="@id/cardPushNotification"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardAddProduct">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:contentDescription="@string/ImageDescription"
-                        android:src="@drawable/ic_update_product" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/UpdateProduct"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardPushNotification"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginStart="10dp"
                 app:cardBackgroundColor="@color/colorWhite"
                 app:cardCornerRadius="8dp"
+                app:layout_constraintStart_toEndOf="@id/cardSetting3"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cardUpdateProduct"
-                app:layout_constraintTop_toBottomOf="@id/cardDeleteProduct">
+                app:layout_constraintTop_toBottomOf="@id/cardSetting2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="15dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="15dp"
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:contentDescription="@string/ImageDescription"
-                        android:src="@drawable/ic_color_notification" />
+                        android:src="@drawable/ic_setting"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/PushNotification"
+                        android:text="@string/action_settings"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/logoutBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="100dp"
-                android:text="@string/Logout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardPushNotification" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,7 +34,7 @@ class AdminFunctionActivity : DrawerBaseActivity() {
         }
 
         //Set the action of the pushNotification button
-        ui.pushNotificationBtn.setOnClickListener{
+        ui.cardPushNotification.setOnClickListener{
             val intent = Intent(this, SendNotification::class.java)
             startActivity(intent)
         }

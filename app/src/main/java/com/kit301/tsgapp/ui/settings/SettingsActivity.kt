@@ -23,7 +23,7 @@ class SettingsActivity : DrawerBaseActivity() {
         setContentView(ui.root)
         setActionbarTitle()  //Set the actionbar title based on the current language setting
 
-        ui.btnChangeLanguage.setOnClickListener{
+        ui.cardChangeLanguage.setOnClickListener{
             showChangeLanguageDialog()
         }
     }

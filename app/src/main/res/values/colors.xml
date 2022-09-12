@@ -20,6 +20,14 @@
     <color name="navy_blue">#3f5965</color>
     <color name="grey">#c1c1c1</color>
 
+    <!-- This color is used for the setting page (User setting and Admin setting) -->
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#151515</color>
+    <color name="colorAccent">#FF5252</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorBackground">#ECECEC</color>
+    <color name="colorWhite">#FFFFFF</color>
+
 
 
 
