@@ -19,9 +19,9 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.kit301.tsgapp.DrawerBaseActivity
+import com.kit301.tsgapp.FIREBASE_TAG
 import com.kit301.tsgapp.Product
 import com.kit301.tsgapp.databinding.ActivityProductDetailsBinding
-import com.kit301.tsgapp.ui.test.FIREBASE_TAG
 import java.io.File
 import java.util.*
 
@@ -118,55 +118,55 @@ class ListProductDetails : DrawerBaseActivity() {
 
         //Add the English Version Data to the UserFavouriteProduct Database
         enProductsCollection
-                .whereEqualTo("barcodeNumber","$barcodeNumber")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
-                .get()
-                .addOnSuccessListener { result->
-                    for (document in result) {
-                        val favouriteProduct = document.toObject<Product>()
+            .whereEqualTo("barcodeNumber","$barcodeNumber")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+            .get()
+            .addOnSuccessListener { result->
+                for (document in result) {
+                    val favouriteProduct = document.toObject<Product>()
 
-                        val favouriteProductCollection = db.collection("UserFavouriteProduct")
-                        favouriteProductCollection.document(deviceID)
-                                .collection("en")
-                                .document("${favouriteProduct.Name}")
-                                .set(favouriteProduct)
-                                .addOnSuccessListener {
-                                    //Display the text to tell the user that the action is success
-                                    Toast.makeText(this, "Successfully added to you favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.d(FIREBASE_TAG, "Document created with product name: ${favouriteProduct.Name}")
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(this, "Failed to add to favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.e(FIREBASE_TAG, "Error writing document")
-                                }
+                    val favouriteProductCollection = db.collection("UserFavouriteProduct")
+                    favouriteProductCollection.document(deviceID)
+                        .collection("en")
+                        .document("${favouriteProduct.Name}")
+                        .set(favouriteProduct)
+                        .addOnSuccessListener {
+                            //Display the text to tell the user that the action is success
+                            Toast.makeText(this, "Successfully added to you favourite list", Toast.LENGTH_SHORT).show()
+                            Log.d(FIREBASE_TAG, "Document created with product name: ${favouriteProduct.Name}")
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Failed to add to favourite list", Toast.LENGTH_SHORT).show()
+                            Log.e(FIREBASE_TAG, "Error writing document")
+                        }
 
-                    }
                 }
+            }
 
         //Add the Chinese Version Data to the UserFavouriteProduct Database
         zhProductsCollection
-                .whereEqualTo("barcodeNumber","$barcodeNumber")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
-                .get()
-                .addOnSuccessListener { result->
-                    for (document in result) {
-                        val favouriteProduct = document.toObject<Product>()
+            .whereEqualTo("barcodeNumber","$barcodeNumber")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+            .get()
+            .addOnSuccessListener { result->
+                for (document in result) {
+                    val favouriteProduct = document.toObject<Product>()
 
-                        val favouriteProductCollection = db.collection("UserFavouriteProduct")
-                        favouriteProductCollection.document(deviceID)
-                                .collection("zh")
-                                .document("${favouriteProduct.Name}")
-                                .set(favouriteProduct)
-                                .addOnSuccessListener {
-                                    //Display the text to tell the user that the action is success
-                                    Toast.makeText(this, "Successfully added to you favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.d(FIREBASE_TAG, "Document created with product name: ${favouriteProduct.Name}")
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(this, "Failed to add to favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.e(FIREBASE_TAG, "Error writing document")
-                                }
+                    val favouriteProductCollection = db.collection("UserFavouriteProduct")
+                    favouriteProductCollection.document(deviceID)
+                        .collection("zh")
+                        .document("${favouriteProduct.Name}")
+                        .set(favouriteProduct)
+                        .addOnSuccessListener {
+                            //Display the text to tell the user that the action is success
+                            Toast.makeText(this, "Successfully added to you favourite list", Toast.LENGTH_SHORT).show()
+                            Log.d(FIREBASE_TAG, "Document created with product name: ${favouriteProduct.Name}")
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Failed to add to favourite list", Toast.LENGTH_SHORT).show()
+                            Log.e(FIREBASE_TAG, "Error writing document")
+                        }
 
-                    }
                 }
+            }
 
     }
 
@@ -178,53 +178,53 @@ class ListProductDetails : DrawerBaseActivity() {
 
         //Delete the English Version Data from the UserFavouriteProduct Database
         enProductsCollection
-                .whereEqualTo("barcodeNumber","$barcodeNumber")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
-                .get()
-                .addOnSuccessListener { result->
-                    for (document in result) {
-                        val favouriteProduct = document.toObject<Product>()
+            .whereEqualTo("barcodeNumber","$barcodeNumber")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+            .get()
+            .addOnSuccessListener { result->
+                for (document in result) {
+                    val favouriteProduct = document.toObject<Product>()
 
-                        val favouriteProductCollection = db.collection("UserFavouriteProduct")
-                        favouriteProductCollection.document(deviceID)
-                                .collection("en")
-                                .document("${favouriteProduct.Name}")
-                                .delete()
-                                .addOnSuccessListener {
-                                    Toast.makeText(this, "Successfully remove the product from your favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${favouriteProduct.Name}")
-                                }
-                                .addOnFailureListener {
-                                    Log.e(FIREBASE_TAG, "Error in deleting document")
-                                }
+                    val favouriteProductCollection = db.collection("UserFavouriteProduct")
+                    favouriteProductCollection.document(deviceID)
+                        .collection("en")
+                        .document("${favouriteProduct.Name}")
+                        .delete()
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Successfully remove the product from your favourite list", Toast.LENGTH_SHORT).show()
+                            Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${favouriteProduct.Name}")
+                        }
+                        .addOnFailureListener {
+                            Log.e(FIREBASE_TAG, "Error in deleting document")
+                        }
 
 
-                    }
                 }
+            }
 
         //Delete the Chinese Version Data from the UserFavouriteProduct Database
         zhProductsCollection
-                .whereEqualTo("barcodeNumber","$barcodeNumber")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
-                .get()
-                .addOnSuccessListener { result->
-                    for (document in result) {
-                        val favouriteProduct = document.toObject<Product>()
+            .whereEqualTo("barcodeNumber","$barcodeNumber")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+            .get()
+            .addOnSuccessListener { result->
+                for (document in result) {
+                    val favouriteProduct = document.toObject<Product>()
 
-                        val favouriteProductCollection = db.collection("UserFavouriteProduct")
-                        favouriteProductCollection.document(deviceID)
-                                .collection("zh")
-                                .document("${favouriteProduct.Name}")
-                                .delete()
-                                .addOnSuccessListener {
-                                    Toast.makeText(this, "Successfully remove the product from your favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${favouriteProduct.Name}")
-                                }
-                                .addOnFailureListener {
-                                    Log.e(FIREBASE_TAG, "Error in deleting document")
-                                }
+                    val favouriteProductCollection = db.collection("UserFavouriteProduct")
+                    favouriteProductCollection.document(deviceID)
+                        .collection("zh")
+                        .document("${favouriteProduct.Name}")
+                        .delete()
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Successfully remove the product from your favourite list", Toast.LENGTH_SHORT).show()
+                            Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${favouriteProduct.Name}")
+                        }
+                        .addOnFailureListener {
+                            Log.e(FIREBASE_TAG, "Error in deleting document")
+                        }
 
 
-                    }
                 }
+            }
 
     }
 
@@ -242,8 +242,8 @@ class ListProductDetails : DrawerBaseActivity() {
 
         //Check whether or not the current product is in favourite list
         val checkFavouriteStatus = FirebaseFirestore.getInstance().collection("UserFavouriteProduct")
-                .document(deviceID).collection("$currentLanguage")
-                .document("${favouriteProductObject.Name}")
+            .document(deviceID).collection("$currentLanguage")
+            .document("${favouriteProductObject.Name}")
         checkFavouriteStatus.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val document = task.result

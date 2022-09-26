@@ -1,5 +1,6 @@
 package com.kit301.tsgapp.ui.notification
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kit301.tsgapp.DrawerBaseActivity
@@ -14,6 +15,7 @@ class NotificationContent : DrawerBaseActivity() {
         super.onCreate(savedInstanceState)
         ui = ActivityNotificationContentBinding.inflate(layoutInflater)
         setContentView(ui.root)
+        setActionbarTitle()
 
         //Retrieve the product extra information from previous page
         val notificationID =intent.getIntExtra(NotificationIndex, -1)
@@ -30,6 +32,18 @@ class NotificationContent : DrawerBaseActivity() {
         ui.notificationContentTime.text = notificationObject.time
         ui.notificationContentBody.text = notificationObject.message
 
+    }
+
+
+    private fun setActionbarTitle() {
+        val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
+        val currentLanguageSetting = sharedPreferences.getString("My_Lang", "")
+        if (currentLanguageSetting == "en" || currentLanguageSetting == ""){
+            allocateActivityTitle("Notification")
+        }
+        else if (currentLanguageSetting == "zh"){
+            allocateActivityTitle("通知")
+        }
     }
 
 

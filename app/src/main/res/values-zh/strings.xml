@@ -60,4 +60,38 @@
     <string name="OtherDetails">其他商品细节</string>
     <string name="Flavour">风味和味道</string>
 
+    <string name="SamplePrice">299.99</string>
+    <string name="SampleProductName">Chinotto Cask II Cask Strength</string>
+    <string name="SampleTasteNose">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
+    <string name="SampleTastePalate">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
+    <string name="SampleTasteFinish">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
+    <string name="SampleProductType">Single Malt</string>
+    <string name="SampleProductVolume">500ml</string>
+    <string name="SampleABV">65.80%</string>
+    <string name="SampleProductYear">2022</string>
+    <string name="dollarIcon">$</string>
+
+    <string name="send">发送</string>
+    <string name="EnterTitle">请输入标题</string>
+    <string name="EnterMessage">请输入信息</string>
+    <string name="NotificationSystem">通知系统</string>
+    <string name="Title">标题</string>
+    <string name="notificationTime">这是通知时间</string>
+    <string name="PushNotification">推送通知</string>
+
+    <string name="AddProduct">添加商品</string>
+    <string name="DeleteProduct">删除商品</string>
+    <string name="UpdateProduct">更新商品</string>
+    <string name="Hello">Hello</string>
+    <string name="UpdateProductDetails">更新产品信息</string>
+    <string name="BarcodeNumber">条形码编号: </string>
+    <string name="Language">语言</string>
+    <string name="SingleCastNumber">Single Cast Number: </string>
+    <string name="AgeStatement">年份: </string>
+    <string name="PleaseSelectTheDatabase">请选择数据库</string>
+    <string name="Version">版本 1.0</string>
+    <string name="LCLTech">本应用程式由LCL Tech开发</string>
+    <string name="barcodeScanner">本应用程序中使用的条码扫描器API来自</string>
+    <string name="barcodeScannerWebsite">https://github.com/yuriy-budiyev/code-scanner</string>
+
 </resources>

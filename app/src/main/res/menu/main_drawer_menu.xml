@@ -34,12 +34,6 @@
             android:icon="@drawable/ic_about"
             android:title="@string/About"/>
 
-        <item android:id="@+id/navigation_test"
-            android:icon="@drawable/ic_test"
-            android:title="@string/Test"/>
-
-
-
 
 
     </group>

@@ -19,9 +19,9 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.kit301.tsgapp.DrawerBaseActivity
+import com.kit301.tsgapp.FIREBASE_TAG
 import com.kit301.tsgapp.Product
 import com.kit301.tsgapp.databinding.ActivityProductDetailsBinding
-import com.kit301.tsgapp.ui.test.FIREBASE_TAG
 import java.io.File
 import java.util.*
 

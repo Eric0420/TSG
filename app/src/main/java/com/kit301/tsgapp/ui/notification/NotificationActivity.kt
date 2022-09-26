@@ -13,10 +13,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.kit301.tsgapp.DrawerBaseActivity
+import com.kit301.tsgapp.FIREBASE_TAG
 import com.kit301.tsgapp.databinding.ActivityHomepageBinding
 import com.kit301.tsgapp.databinding.ActivityNotificationBinding
 import com.kit301.tsgapp.databinding.NotificationListItemBinding
-import com.kit301.tsgapp.ui.test.FIREBASE_TAG
+
 
 const val NotificationIndex = "Notification_Index"
 val NotificationItems = mutableListOf<NotificationData>()

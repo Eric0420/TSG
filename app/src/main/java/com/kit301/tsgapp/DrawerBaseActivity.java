@@ -21,7 +21,6 @@ import com.kit301.tsgapp.ui.homepage.Homepage;
 import com.kit301.tsgapp.ui.notification.NotificationActivity;
 import com.kit301.tsgapp.ui.search.SearchProduct;
 import com.kit301.tsgapp.ui.settings.SettingsActivity;
-import com.kit301.tsgapp.ui.test.Test;
 
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,11 +61,6 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
             case R.id.navigation_home:
                 startActivity(new Intent(this, Homepage.class));
-                overridePendingTransition(0,0);
-                break;
-
-            case R.id.navigation_test:
-                startActivity(new Intent(this, Test.class));
                 overridePendingTransition(0,0);
                 break;
 

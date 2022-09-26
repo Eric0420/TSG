@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.admin.addProduct.AddProductActivity">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/ProductName"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/name"
+                app:layout_constraintStart_toStartOf="@+id/name"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/productType"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/name"
+                app:layout_constraintStart_toStartOf="@+id/name"
+                app:layout_constraintTop_toBottomOf="@+id/editName" />
+
+            <EditText
+                android:id="@+id/editType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/type"
+                app:layout_constraintStart_toStartOf="@+id/type"
+                app:layout_constraintTop_toBottomOf="@+id/type"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/volume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/Volume"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/name"
+                app:layout_constraintStart_toStartOf="@+id/name"
+                app:layout_constraintTop_toBottomOf="@+id/editType" />
+
+            <EditText
+                android:id="@+id/editVolume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/volume"
+                app:layout_constraintStart_toStartOf="@+id/volume"
+                app:layout_constraintTop_toBottomOf="@+id/volume"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/ProductYear"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editVolume" />
+
+            <EditText
+                android:id="@+id/editYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/year"
+                app:layout_constraintStart_toStartOf="@+id/year"
+                app:layout_constraintTop_toBottomOf="@+id/year"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/adv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/productABV"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editYear" />
+
+            <EditText
+                android:id="@+id/editAdv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/adv"
+                app:layout_constraintStart_toStartOf="@+id/adv"
+                app:layout_constraintTop_toBottomOf="@+id/adv"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/productPrice"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editAdv" />
+
+            <EditText
+                android:id="@+id/editPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/price"
+                app:layout_constraintStart_toStartOf="@+id/price"
+                app:layout_constraintTop_toBottomOf="@+id/price"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/barcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BarcodeNumber"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPrice" />
+
+            <EditText
+                android:id="@+id/editBarcode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/barcode"
+                app:layout_constraintStart_toStartOf="@+id/barcode"
+                app:layout_constraintTop_toBottomOf="@+id/barcode"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/cask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/SingleCastNumber"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editBarcode" />
+
+            <EditText
+                android:id="@+id/editCask"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/cask"
+                app:layout_constraintStart_toStartOf="@+id/cask"
+                app:layout_constraintTop_toBottomOf="@+id/cask"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/palate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/TastePalate"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editCask" />
+
+            <EditText
+                android:id="@+id/editPalate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textUri|textLongMessage"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/palate"
+                app:layout_constraintStart_toStartOf="@+id/palate"
+                app:layout_constraintTop_toBottomOf="@+id/palate"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/nose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/TasteNose"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPalate" />
+
+            <EditText
+                android:id="@+id/editNose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textUri|textLongMessage"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/nose"
+                app:layout_constraintStart_toStartOf="@+id/nose"
+                app:layout_constraintTop_toBottomOf="@+id/nose"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/finish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/TasteFinish"
+                android:textColor="@color/primary_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editNose" />
+
+            <EditText
+                android:id="@+id/editFinish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textUri|textLongMessage"
+                android:textColorHighlight="@color/primary_orange"
+                android:textColorLink="@color/primary_orange"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/finish"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/finish"
+                app:layout_constraintTop_toBottomOf="@+id/finish"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/AddProduct"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editFinish" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

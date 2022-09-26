@@ -1,13 +1,11 @@
-package com.kit301.tsgapp.ui.search
+package com.kit301.tsgapp.ui.admin.deleteProduct
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.content.res.Configuration
+import android.app.AlertDialog
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.SearchView
@@ -21,7 +19,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.kit301.tsgapp.DrawerBaseActivity
 import com.kit301.tsgapp.FIREBASE_TAG
 import com.kit301.tsgapp.Product
-import com.kit301.tsgapp.databinding.ActivitySearchProductBinding
+import com.kit301.tsgapp.databinding.ActivityDeleteBinding
 import com.kit301.tsgapp.databinding.MyFavouriteListBinding
 import java.io.File
 import java.util.*
@@ -32,14 +30,14 @@ val ProductItems = mutableListOf<Product>()
 var filtered = mutableListOf<Product>()
 var filterOn = false
 
-class SearchProduct : DrawerBaseActivity() {
+class DeleteActivity : DrawerBaseActivity() {
 
-    private lateinit var ui : ActivitySearchProductBinding
+    private lateinit var ui : ActivityDeleteBinding
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = ActivitySearchProductBinding.inflate(layoutInflater)
+        ui = ActivityDeleteBinding.inflate(layoutInflater)
         setContentView(ui.root)
         setActionbarTitle()
 
@@ -63,7 +61,7 @@ class SearchProduct : DrawerBaseActivity() {
         }
 
         //Retrieve data from database
-        var productCollection = db.collection(languageFlag)
+        val productCollection = db.collection(languageFlag)
         productCollection
             .get()
             .addOnSuccessListener { result ->
@@ -78,7 +76,7 @@ class SearchProduct : DrawerBaseActivity() {
 
                     ProductItems.add(product)
                 }
-                (ui.productList.adapter as SearchProduct.ListProductAdapter).notifyDataSetChanged()
+                (ui.productList.adapter as DeleteActivity.ListProductAdapter).notifyDataSetChanged()
             }
 
         ui.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -110,11 +108,7 @@ class SearchProduct : DrawerBaseActivity() {
                 if (newText != null) {
                     // if query exist within list we
                     // are filtering our list adapter.
-                    filtered = ProductItems.filter {
-                        it.Name?.toLowerCase(
-                            Locale.ROOT
-                        )?.contains(newText) == true
-                    }.toMutableList()
+                    filtered = ProductItems.filter { it.Name?.toLowerCase(Locale.ROOT)?.contains(newText) == true }.toMutableList()
                     ui.productList.adapter = ListProductAdapter(ListProduct = filtered)
                     filterOn = true
                 } else {
@@ -137,7 +131,7 @@ class SearchProduct : DrawerBaseActivity() {
     inner class ListProductAdapter(private val ListProduct: MutableList<Product>) : RecyclerView.Adapter<ListProductHolder>() {
 
         //inflates a new row, and wraps it in a new ViewHolder
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchProduct.ListProductHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeleteActivity.ListProductHolder {
             val ui = MyFavouriteListBinding.inflate(layoutInflater, parent, false)   //inflate a new row from the my_favourite_list.xml
             return ListProductHolder(ui)                                             //wrap it in a ViewHolder
         }
@@ -161,14 +155,21 @@ class SearchProduct : DrawerBaseActivity() {
 
             holder.itemView.setOnClickListener {
 
-                var intent = Intent(holder.itemView.context, ListProductDetails::class.java)
+                val builder = AlertDialog.Builder(this@DeleteActivity)
+                builder.setMessage("Confirm to delete ${product.Name}.")
+                    .setCancelable(false)
+                    .setPositiveButton("Confirm") { _, _ ->
+                        // Delete selected note from database
+                        deleteProduct(product)
+                    }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        // Dismiss the dialog
+                        dialog.dismiss()
+                    }
+                val alert = builder.create()
+                alert.show()
+                alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
 
-                if (filterOn){
-                    intent.putExtra(FilterProductIndex, position)
-                }else{
-                    intent.putExtra(ListProductIndex, position)
-                }
-                startActivity(intent)
 
             }
         }
@@ -178,15 +179,43 @@ class SearchProduct : DrawerBaseActivity() {
         }
     }
 
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun deleteProduct(product: Product) {
+        val db = Firebase.firestore
+        var languageFlag = "enProduct"
+
+        languageFlag =
+            if (getSharedPreferences("Settings", Activity.MODE_PRIVATE).getString("My_Lang", "") == "en" || getSharedPreferences("Settings", Activity.MODE_PRIVATE).getString("My_Lang", "") == ""){
+                "enProduct"
+            }else{
+                "zhProduct"
+            }
+        val productCollection = db.collection(languageFlag)
+        product.Name?.let {
+            productCollection.document(it)
+                .delete()
+                .addOnSuccessListener {
+                    ProductItems.remove(product)
+                    if(filterOn){
+                        filtered.remove(product)
+                    }
+                    ui.productList.adapter?.notifyDataSetChanged()
+                }
+        }
+
+
+    }
+
     private fun setActionbarTitle() {
         val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
         val currentLanguageSetting = sharedPreferences.getString("My_Lang", "")
 
         if (currentLanguageSetting == "en" || currentLanguageSetting == ""){
-            allocateActivityTitle("Search Product")
+            allocateActivityTitle("Search/Delete Product")
         }
         else if (currentLanguageSetting == "zh"){
-            allocateActivityTitle("搜索商品")
+            allocateActivityTitle("搜索/删除商品")
         }
     }
 

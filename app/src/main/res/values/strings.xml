@@ -60,7 +60,6 @@
     <string name="OtherDetails">Other Details</string>
     <string name="Flavour">Flavour</string>
 
-
     <string name="SamplePrice">299.99</string>
     <string name="SampleProductName">Chinotto Cask II Cask Strength</string>
     <string name="SampleTasteNose">Buttry crepes suzette, accompanied by intense smoky marmalade and grape fruit that dominate the moment</string>
@@ -90,6 +89,10 @@
     <string name="SingleCastNumber">Single Cast Number: </string>
     <string name="AgeStatement">Age Statement: </string>
     <string name="PleaseSelectTheDatabase">Please select the database</string>
+    <string name="Version">Version 1.0</string>
+    <string name="LCLTech">This application develop by LCL Tech</string>
+    <string name="barcodeScanner">This application use barcode scanner API from</string>
+    <string name="barcodeScannerWebsite">https://github.com/yuriy-budiyev/code-scanner</string>
 
 
 </resources>

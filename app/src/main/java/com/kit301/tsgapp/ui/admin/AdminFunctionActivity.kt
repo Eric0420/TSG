@@ -6,6 +6,8 @@ import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.kit301.tsgapp.DrawerBaseActivity
 import com.kit301.tsgapp.databinding.ActivityAdminFunctionBinding
+import com.kit301.tsgapp.ui.admin.addProduct.AddProductActivity
+import com.kit301.tsgapp.ui.admin.deleteProduct.DeleteActivity
 import com.kit301.tsgapp.ui.admin.updateProductRecord.SearchProductRecord
 import com.kit301.tsgapp.ui.notification.SendNotification
 
@@ -44,6 +46,20 @@ class AdminFunctionActivity : DrawerBaseActivity() {
             val intent = Intent(this, SearchProductRecord::class.java)
             startActivity(intent)
         }
+
+        //Add product
+        ui.cardAddProduct.setOnClickListener {
+            val intent = Intent(this, AddProductActivity::class.java)
+            startActivity(intent)
+        }
+
+        //Delete product activity
+        ui.cardDeleteProduct.setOnClickListener {
+            val intent = Intent(this, DeleteActivity::class.java)
+            startActivity(intent)
+        }
+
+
 
     }
 

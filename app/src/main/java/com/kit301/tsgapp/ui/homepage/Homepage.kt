@@ -21,8 +21,6 @@ import com.kit301.tsgapp.DataNotFound
 import com.kit301.tsgapp.DrawerBaseActivity
 import com.kit301.tsgapp.databinding.ActivityHomepageBinding
 import com.kit301.tsgapp.ProductDetails
-import com.kit301.tsgapp.ui.test.FIREBASE_TAG
-import com.kit301.tsgapp.ui.test.Test
 import java.util.*
 
 private const val CAMERA_REQUEST_CODE = 101

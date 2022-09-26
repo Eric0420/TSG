@@ -23,7 +23,6 @@ import com.kit301.tsgapp.databinding.ActivityProductDetailsBinding
 import com.kit301.tsgapp.ui.admin.AdminActivity
 import com.kit301.tsgapp.ui.homepage.Homepage
 import com.kit301.tsgapp.ui.homepage.Scan_Text
-import com.kit301.tsgapp.ui.test.FIREBASE_TAG
 import java.io.File
 import java.util.*
 
