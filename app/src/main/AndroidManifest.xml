@@ -22,8 +22,17 @@
         android:roundIcon="@mipmap/ic_shopping_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectTSG">
-        <activity android:name=".ui.notification.NotificationContent"
+
+        <activity
+            android:name=".ui.admin.updateProductRecord.UpdateProductDetails"
             android:theme="@style/Theme.ProjectTSG.NoActionBar"/>
+
+        <activity
+            android:name=".ui.admin.updateProductRecord.SearchProductRecord"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar"/>
+        <activity
+            android:name=".ui.notification.NotificationContent"
+            android:theme="@style/Theme.ProjectTSG.NoActionBar" />
 
         <service
             android:name=".ui.notification.FirebaseService"
@@ -36,10 +45,7 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_shopping" />
-        <!--
-             Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more.
-        -->
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/purple_700" />

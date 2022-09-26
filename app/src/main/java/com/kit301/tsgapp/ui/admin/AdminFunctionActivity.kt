@@ -2,11 +2,11 @@ package com.kit301.tsgapp.ui.admin
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.kit301.tsgapp.DrawerBaseActivity
 import com.kit301.tsgapp.databinding.ActivityAdminFunctionBinding
+import com.kit301.tsgapp.ui.admin.updateProductRecord.SearchProductRecord
 import com.kit301.tsgapp.ui.notification.SendNotification
 
 
@@ -36,6 +36,12 @@ class AdminFunctionActivity : DrawerBaseActivity() {
         //Set the action of the pushNotification button
         ui.cardPushNotification.setOnClickListener{
             val intent = Intent(this, SendNotification::class.java)
+            startActivity(intent)
+        }
+
+        //Set the action of the UpdateProductDetails button
+        ui.cardUpdateProduct.setOnClickListener {
+            val intent = Intent(this, SearchProductRecord::class.java)
             startActivity(intent)
         }
 

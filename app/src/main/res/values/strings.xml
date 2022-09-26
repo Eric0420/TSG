@@ -15,7 +15,7 @@
     <string name="ProductName">Product Name: </string>
     <string name="productABV">Alcohol by volume: </string>
     <string name="ProductYear">Year of release: </string>
-    <string name="productPrice">ProductPrice: </string>
+    <string name="productPrice">Product Price: </string>
     <string name="productType">Product Type: </string>
     <string name="TasteNose">Taste notes - Nose: </string>
     <string name="TastePalate">Taste notes - Palate: </string>
@@ -84,7 +84,12 @@
     <string name="DeleteProduct">Delete Product</string>
     <string name="UpdateProduct">Update Product</string>
     <string name="Hello">Hello</string>
-
+    <string name="UpdateProductDetails">Update Product Details</string>
+    <string name="BarcodeNumber">Barcode Number: </string>
+    <string name="Language">Language</string>
+    <string name="SingleCastNumber">Single Cast Number: </string>
+    <string name="AgeStatement">Age Statement: </string>
+    <string name="PleaseSelectTheDatabase">Please select the database</string>
 
 
 </resources>
