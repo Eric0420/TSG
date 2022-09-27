@@ -3,12 +3,17 @@ package com.kit301.tsgapp.ui.admin.addProduct
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.kit301.tsgapp.DrawerBaseActivity
 import com.kit301.tsgapp.Product
 import com.kit301.tsgapp.databinding.ActivityAddProductBinding
+import com.kit301.tsgapp.isMyFavourite
 import com.kit301.tsgapp.ui.search.ProductItems
 
 class AddProductActivity : DrawerBaseActivity() {
@@ -58,21 +63,48 @@ class AddProductActivity : DrawerBaseActivity() {
                         "zhProduct"
                     }
 
-                //Retrieve data from database
-                val productCollection = db.collection(languageFlag)
-                productCollection.document(newProduct.Name!!)
-                    .set(newProduct)
-                    .addOnSuccessListener {
-                        ProductItems.add(newProduct)
-                        val builder = AlertDialog.Builder(this)
-                        builder.setMessage("Successfully add ${newProduct.Name} to database.")
-                            .setPositiveButton("OK",
-                                DialogInterface.OnClickListener { _, _ ->
-                                    finish()
-                                })
-                        builder.create()
-                        builder.show()
+
+                //Check whether or not the current product is in database
+                val checkExistingProduct = FirebaseFirestore.getInstance().collection("$languageFlag")
+                        .document("${newProduct.Name.toString()}")
+                checkExistingProduct.get().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val document = task.result
+                        if (document != null) {
+                            if (document.exists()) {
+
+                                val builder = AlertDialog.Builder(this)
+                                builder.setMessage("This product already exist in database")
+                                        .setPositiveButton("OK",
+                                                DialogInterface.OnClickListener { _, _ ->
+                                                    finish()
+                                                })
+                                builder.create()
+                                builder.show()
+                            } else {
+                                //Retrieve data from database
+                                val productCollection = db.collection(languageFlag)
+                                productCollection.document(newProduct.Name!!)
+                                        .set(newProduct)
+                                        .addOnSuccessListener {
+                                            ProductItems.add(newProduct)
+                                            val builder = AlertDialog.Builder(this)
+                                            builder.setMessage("Successfully add ${newProduct.Name} to database.")
+                                                    .setPositiveButton("OK",
+                                                            DialogInterface.OnClickListener { _, _ ->
+                                                                finish()
+                                                            })
+                                            builder.create()
+                                            builder.show()
+                                        }
+                            }
+                        }
+                    } else {
+                        Log.d("TAG", "Error: ", task.exception)
                     }
+                }
+
+
             }
 
         }
