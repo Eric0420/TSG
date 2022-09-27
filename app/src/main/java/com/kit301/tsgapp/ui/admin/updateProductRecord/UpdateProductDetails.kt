@@ -1,6 +1,8 @@
 package com.kit301.tsgapp.ui.admin.updateProductRecord
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -68,14 +70,23 @@ class UpdateProductDetails : DrawerBaseActivity() {
                         ui.btnChangeDetails.setOnClickListener {
                             val newProductName = ui.txtProductName.text.toString()
 
-                            if (oldProductName == newProductName){
-                                updateProductDetails(product, currentLanguageSelection)
+                            //If some field do not enter the correct value, do now allow the admin to update the product
+                            if(ui.txtProductName.text.isNullOrBlank() || ui.txtABV.text.isNullOrBlank()
+                                    || ui.txtVolume.text.isNullOrBlank() || ui.txtAverageSalesPrice.text.isNullOrBlank()
+                                    || ui.txtProductType.text.isNullOrBlank()){
+
+                                showAlertDialog()
                             }
-                            else{
+                            else {
 
-                                deleteOldProductRecord(product, currentLanguageSelection)
+                                if (oldProductName == newProductName) {
+                                    updateProductDetails(product, currentLanguageSelection)
+                                } else {
 
-                                updateProductDetails(product, currentLanguageSelection)
+                                    deleteOldProductRecord(product, currentLanguageSelection)
+
+                                    updateProductDetails(product, currentLanguageSelection)
+                                }
                             }
 
 
@@ -91,6 +102,23 @@ class UpdateProductDetails : DrawerBaseActivity() {
                 Log.d(FIREBASE_TAG, "Error getting documents")
                 Toast.makeText(this,"Failed", Toast.LENGTH_SHORT).show()
             }
+
+
+    }
+
+    private fun showAlertDialog() {
+
+        val mBuilder = androidx.appcompat.app.AlertDialog.Builder(this)
+        mBuilder.setTitle("Error Message")
+        mBuilder.setMessage("Please fill out the required information")
+                //.setPositiveButton("OK", DialogInterface.OnClickListener{_, _ ->
+                //
+                //})
+
+        val mDialog = mBuilder.create()
+
+        //Show alert dialog
+        mDialog.show()
 
 
     }
