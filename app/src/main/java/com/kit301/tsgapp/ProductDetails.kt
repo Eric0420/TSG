@@ -14,14 +14,13 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.kit301.tsgapp.databinding.ActivityProductDetailsBinding
-import com.kit301.tsgapp.ui.admin.AdminActivity
-import com.kit301.tsgapp.ui.homepage.Homepage
 import com.kit301.tsgapp.ui.homepage.Scan_Text
 import java.io.File
 import java.util.*
@@ -65,16 +64,13 @@ class ProductDetails : DrawerBaseActivity() {
 
     private fun readData(barcodeNumber: String?) {
 
-
         var currentLanguage = getSharedPreferences("Settings", Activity.MODE_PRIVATE).getString("My_Lang", "")
-
         //This if statement is used to prevent error (If do not add this statement, when user do not change the language setting, the currentLanguage value will be null)
         if (currentLanguage == "en" || currentLanguage == ""){
             currentLanguage = "en"
         }
 
-
-
+        //Get the product information based on different database table
         var productsCollection = db.collection("$currentLanguage" + "Product")
 
         productsCollection
@@ -94,14 +90,16 @@ class ProductDetails : DrawerBaseActivity() {
                         for (document in result) {
                             //Setup the User Interface
                             val product = document.toObject<Product>()
+
+                            //Setup the user interface with current product
                             setupUI(product)
 
                             //Check whether or not the current product is in favourite list
                             checkFavouriteStatus(product)
 
+
                             //Set the action of the Favourite button
                             ui.btnFavourite.setOnClickListener {
-
 
                                 //If the current product exist in favourite list
                                 if (isMyFavourite) {
@@ -122,7 +120,7 @@ class ProductDetails : DrawerBaseActivity() {
                                 }
                             }  //This is the end of the favourite button action
 
-                            //Share product image
+                            //Share product image when the 'Share' button is clicked
                             ui.btnShare.setOnClickListener {
                                 this.window.decorView.isDrawingCacheEnabled = true
                                 val bmp: Bitmap = this.window.decorView.drawingCache
@@ -150,9 +148,50 @@ class ProductDetails : DrawerBaseActivity() {
 
         val enProductsCollection = db.collection("enProduct")  //The English Language product database
         val zhProductsCollection = db.collection("zhProduct")  ////The Chinese Language product database
-        val deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
 
+        //Add the product to the English version database
+        addProductWithEnglishVersion(barcodeNumber, enProductsCollection)
+
+        //Add the product to the Chinese version database
+        addProductWithChineseVersion(barcodeNumber, zhProductsCollection)
+
+
+
+    }
+
+    private fun addProductWithChineseVersion(barcodeNumber: String?, zhProductsCollection: CollectionReference) {
+        val deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+        //Add the Chinese Version Data to the UserFavouriteProduct Database
+        zhProductsCollection
+                .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
+                .get()
+                .addOnSuccessListener { result->
+                    for (document in result) {
+                        val product = document.toObject<Product>()
+
+                        val productCollection = db.collection("UserFavouriteProduct")
+                        productCollection.document(deviceID)
+                                .collection("zh")
+                                .document("${product.Name}")
+                                .set(product)
+                                .addOnSuccessListener {
+                                    //Display the text to tell the user that the action is success
+                                    //Toast.makeText(this, "Successfully added to you favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.d(FIREBASE_TAG, "Document created with product name: ${product.Name}")
+                                }
+                                .addOnFailureListener {
+                                    //Toast.makeText(this, "Failed to add to favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.e(FIREBASE_TAG, "Error writing document")
+                                }
+
+                    }
+                }
+
+    }
+
+    private fun addProductWithEnglishVersion(barcodeNumber: String?, enProductsCollection: CollectionReference) {
         //Add the English Version Data to the UserFavouriteProduct Database
+        val deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
         enProductsCollection
                 .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
                 .get()
@@ -178,7 +217,26 @@ class ProductDetails : DrawerBaseActivity() {
                     }
                 }
 
-        //Add the Chinese Version Data to the UserFavouriteProduct Database
+    }
+
+    private fun deleteFavouriteProduct(barcodeNumber: String?) {
+
+        val enProductsCollection = db.collection("enProduct")  //The English Language product database
+        val zhProductsCollection = db.collection("zhProduct")  //The Chinese Language product database
+
+        //Delete the English version product
+        deleteProductWithEnglishVersion(barcodeNumber, enProductsCollection)
+
+        //Delete the Chinese version product
+        deleteProductWithChineseVersion(barcodeNumber, zhProductsCollection)
+
+    }
+
+    private fun deleteProductWithChineseVersion(barcodeNumber: String?, zhProductsCollection: CollectionReference) {
+
+        val deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+
+        //Delete the Chinese Version Data from the UserFavouriteProduct Database
         zhProductsCollection
                 .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
                 .get()
@@ -190,28 +248,24 @@ class ProductDetails : DrawerBaseActivity() {
                         productCollection.document(deviceID)
                                 .collection("zh")
                                 .document("${product.Name}")
-                                .set(product)
+                                .delete()
                                 .addOnSuccessListener {
-                                    //Display the text to tell the user that the action is success
-                                    Toast.makeText(this, "Successfully added to you favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.d(FIREBASE_TAG, "Document created with product name: ${product.Name}")
+                                    //Toast.makeText(this, "Successfully remove the product from your favourite list", Toast.LENGTH_SHORT).show()
+                                    Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${product.Name}")
                                 }
                                 .addOnFailureListener {
-                                    Toast.makeText(this, "Failed to add to favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.e(FIREBASE_TAG, "Error writing document")
+                                    Log.e(FIREBASE_TAG, "Error in deleting document")
                                 }
+
 
                     }
                 }
 
     }
 
-    private fun deleteFavouriteProduct(barcodeNumber: String?) {
+    private fun deleteProductWithEnglishVersion(barcodeNumber: String?, enProductsCollection: CollectionReference) {
 
-        val enProductsCollection = db.collection("enProduct")  //The English Language product database
-        val zhProductsCollection = db.collection("zhProduct")  //The Chinese Language product database
         val deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
-
         //Delete the English Version Data from the UserFavouriteProduct Database
         enProductsCollection
                 .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
@@ -237,34 +291,7 @@ class ProductDetails : DrawerBaseActivity() {
                     }
                 }
 
-        //Delete the Chinese Version Data from the UserFavouriteProduct Database
-        zhProductsCollection
-                .whereEqualTo("barcodeNumber","${barcodeNumber}")  //This is a Query for searching the document which barcodeNum is: "${barcodeNum}"
-                .get()
-                .addOnSuccessListener { result->
-                    for (document in result) {
-                        val product = document.toObject<Product>()
-
-                        val productCollection = db.collection("UserFavouriteProduct")
-                        productCollection.document(deviceID)
-                                .collection("zh")
-                                .document("${product.Name}")
-                                .delete()
-                                .addOnSuccessListener {
-                                    Toast.makeText(this, "Successfully remove the product from your favourite list", Toast.LENGTH_SHORT).show()
-                                    Log.d(FIREBASE_TAG, "Successfully deleted with product name: ${product.Name}")
-                                }
-                                .addOnFailureListener {
-                                    Log.e(FIREBASE_TAG, "Error in deleting document")
-                                }
-
-
-                    }
-                }
-
     }
-
-
 
 
     private fun checkFavouriteStatus(product: Product) {

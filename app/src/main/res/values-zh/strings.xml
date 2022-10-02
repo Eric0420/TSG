@@ -48,7 +48,7 @@
     <string name="menu_home">主页</string>
     <string name="DataNotFound">没有找到相关商品</string>
     <string name="ScanOtherProduct">扫描其他商品</string>
-    <string name="ScanSomething">请扫描商品信息...</string>
+    <string name="PleaseScanProductBarcode">请扫描商品条形码</string>
     <string name="ChangeLanguage">更改语言</string>
 
     <string name="Volume">容量 (毫升): </string>

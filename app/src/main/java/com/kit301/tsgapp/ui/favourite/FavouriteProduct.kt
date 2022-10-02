@@ -44,40 +44,17 @@ val FavouriteItems = mutableListOf<Product>()
         //or a grid layout
         ui.favouriteList.layoutManager = GridLayoutManager(this,2)
 
-
-        //Get database connection and connect to database
-        val db = Firebase.firestore
-
-        //Get the Android Device ID for identifying different devices
-        var deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
-
+        //Get current language setting
         var currentLanguage = getSharedPreferences("Settings", Activity.MODE_PRIVATE).getString("My_Lang", "")
-
         //This if statement is used to prevent error
         if (currentLanguage == "en" || currentLanguage == ""){
             currentLanguage = "en"
         }
 
-        //Retrieve data from database
-        var favouriteCollection = db.collection("UserFavouriteProduct")
-        favouriteCollection.document(deviceID)
-            .collection("$currentLanguage")
-            .get()
-            .addOnSuccessListener { result ->
-                FavouriteItems.clear() //this line clears the list, and prevents a bug where items would be duplicated upon rotation of screen
-                Log.d(FIREBASE_TAG, "--- all Favourite Product ---")
-                for (document in result)
-                {
-                    //Log.d(FIREBASE_TAG, document.toString())
-                    val product = document.toObject<Product>()
-                    product.id = document.id
-                    Log.d(FIREBASE_TAG, product.toString())
+        //Get user favourite data from the database based on the current language setting
+        getUserFavouriteData(currentLanguage)
 
-                    FavouriteItems.add(product)
-                }
-                (ui.favouriteList.adapter as FavouriteProductAdapter).notifyDataSetChanged()
-            }
-
+        //Setup the action of the back button
         ui.btnFavouriteBack.setOnClickListener{
             val intent = Intent(this, Homepage::class.java)
             startActivity(intent)
@@ -85,11 +62,40 @@ val FavouriteItems = mutableListOf<Product>()
         }
 
 
-
-
     }
 
-    inner class FavouriteProductHolder(var ui: MyFavouriteListBinding) : RecyclerView.ViewHolder(ui.root) {}
+     private fun getUserFavouriteData(currentLanguage: String?) {
+
+         //Get database connection and connect to database
+         val db = Firebase.firestore
+
+         //Get the Android Device ID for identifying different devices
+         var deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+
+         //Retrieve data from database
+         var favouriteCollection = db.collection("UserFavouriteProduct")
+         favouriteCollection.document(deviceID)
+                 .collection("$currentLanguage")
+                 .get()
+                 .addOnSuccessListener { result ->
+                     FavouriteItems.clear() //this line clears the list, and prevents a bug where items would be duplicated upon rotation of screen
+                     Log.d(FIREBASE_TAG, "--- all Favourite Product ---")
+                     for (document in result)
+                     {
+                         //Log.d(FIREBASE_TAG, document.toString())
+                         val product = document.toObject<Product>()
+                         product.id = document.id
+                         Log.d(FIREBASE_TAG, product.toString())
+
+                         FavouriteItems.add(product)
+                     }
+                     (ui.favouriteList.adapter as FavouriteProductAdapter).notifyDataSetChanged()
+                 }
+
+     }
+
+
+     inner class FavouriteProductHolder(var ui: MyFavouriteListBinding) : RecyclerView.ViewHolder(ui.root) {}
 
     //The adapter is the controller that handles the communication between our model and our view.
     inner class FavouriteProductAdapter(private val FavouriteProduct: MutableList<Product>) : RecyclerView.Adapter<FavouriteProductHolder>() {
@@ -116,7 +122,7 @@ val FavouriteItems = mutableListOf<Product>()
             }
 
 
-
+            //Setup the action when the favourite item is click
             holder.itemView.setOnClickListener {
                 var intent = Intent(holder.itemView.context, FavouriteProductDetails::class.java)
                 intent.putExtra(FavouriteProductIndex, position)
